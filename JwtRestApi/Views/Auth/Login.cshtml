@@ -1,0 +1,47 @@
+@model MultilingualCRUD_Api.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>User Management System</h1>
+            <p>JWT Based Login System</p>
+            <h2 style="margin-top: 0.5rem; font-size: 1rem; color: #6b7280;">Sign in</h2>
+        </div>
+        
+        <form asp-action="Login" method="post" class="login-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="UsernameOrEmail" class="form-label">Username or Email</label>
+                <input asp-for="UsernameOrEmail" class="form-control"/>
+                <span asp-validation-for="UsernameOrEmail" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" class="form-control" placeholder="Enter password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input asp-for="AutoCreate" class="form-check-input" />
+                    <label asp-for="AutoCreate" class="form-check-label">Create user if not exists (uses the fields above)</label>
+                </div>
+            </div>
+            
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger">@Model.ErrorMessage</div>
+            }
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </form>
+    </div>
+</div>
