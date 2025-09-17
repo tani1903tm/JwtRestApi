@@ -78,21 +78,21 @@ The application uses SQLite, so no external database server is required. However
 
 ### 4. Run the Application
 ```bash
-dotnet run --urls "http://localhost:5000"
+dotnet run --urls "http://localhost:5200"
 ```
 
-The application will be available at: `http://localhost:5000`
+The application will be available at: `http://localhost:5200`
 
 ### 5. Access the Application
 
 #### Web Application
-- **Main Application**: `http://localhost:5000` (HTML/JavaScript frontend)
-- **Login Page**: `http://localhost:5000` (redirects to login if not authenticated)
-- **Dashboard**: `http://localhost:5000` (requires authentication)
+- **Main Application**: `http://localhost:5200` (HTML/JavaScript frontend)
+- **Login Page**: `http://localhost:5200` (redirects to login if not authenticated)
+- **Dashboard**: `http://localhost:5200` (requires authentication)
 
 #### API Documentation (Swagger)
-- **Swagger UI**: `http://localhost:5000/swagger` (API documentation)
-- **API Documentation**: `http://localhost:5000/swagger/v1/swagger.json`
+- **Swagger UI**: `http://localhost:5200/swagger` (API documentation)
+- **API Documentation**: `http://localhost:5200/swagger/v1/swagger.json`
 
 The Swagger UI provides:
 - Interactive API testing interface
@@ -131,7 +131,7 @@ The Swagger UI provides:
 ### Web Application
 The HTML/JavaScript frontend provides a modern, user-friendly interface for interacting with the API:
 
-1. **Login**: Navigate to `http://localhost:5000`
+1. **Login**: Navigate to `http://localhost:5200`
    - Enter your credentials (username/email and password)
    - The app will automatically handle JWT token management
 
@@ -150,7 +150,7 @@ The HTML/JavaScript frontend provides a modern, user-friendly interface for inte
 
 #### Option 1: Using Swagger UI (Recommended)
 
-1. **Open Swagger UI**: Navigate to `http://localhost:5000` in your browser
+1. **Open Swagger UI**: Navigate to `http://localhost:5200` in your browser
 2. **Test Authentication**:
    - Click on the `POST /api/auth/login` endpoint
    - Click "Try it out"
@@ -169,7 +169,7 @@ The HTML/JavaScript frontend provides a modern, user-friendly interface for inte
 
 #### 1. Test Authentication (Login)
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST http://localhost:5200/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "usernameOrEmail": "testuser",
@@ -188,26 +188,26 @@ curl -X POST http://localhost:5000/api/auth/login \
 #### 2. Test Protected Endpoints
 ```bash
 # Get all users (requires authentication)
-curl -X GET http://localhost:5000/api/users \
+curl -X GET http://localhost:5200/api/users \
   -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 
 #### 3. Test Multilingual Support
 ```bash
 # English (default)
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST http://localhost:5200/api/auth/login \
   -H "Content-Type: application/json" \
   -H "Accept-Language: en" \
   -d '{"usernameOrEmail": "invalid", "password": "invalid"}'
 
 # Hindi
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST http://localhost:5200/api/auth/login \
   -H "Content-Type: application/json" \
   -H "Accept-Language: hi" \
   -d '{"usernameOrEmail": "invalid", "password": "invalid"}'
 
 # Bengali
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST http://localhost:5200/api/auth/login \
   -H "Content-Type: application/json" \
   -H "Accept-Language: bn" \
   -d '{"usernameOrEmail": "invalid", "password": "invalid"}'
@@ -215,7 +215,7 @@ curl -X POST http://localhost:5000/api/auth/login \
 
 #### 4. Test Token Refresh
 ```bash
-curl -X POST http://localhost:5000/api/auth/refresh \
+curl -X POST http://localhost:5200/api/auth/refresh \
   -H "Content-Type: application/json" \
   -d '{
     "refreshToken": "YOUR_REFRESH_TOKEN"
